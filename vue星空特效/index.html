@@ -26,7 +26,7 @@
             }
         }
 
-        .stars {
+        .starsbox {
             transform: perspective(500px);
             transform-style: preserve-3d;
             position: absolute;
@@ -61,29 +61,34 @@
 
 <body>
 
-    <div class="stars"></div>
+    <div class="starsbox"></div>
     <!--背景层，不要删除，不然没有作用-->
-    <div class="img-wrap">
+    <!-- <div class="img-wrap">
 
-    </div>
+    </div> -->
     <script>
         $(document).ready(function () {
-            var stars = 800; /*星星的密集程度，数字越大越多*/
-            var $stars = $(".stars");
-            var r = 800; /*星星的看起来的距离,值越大越远,可自行调制到自己满意的样子*/
-            for (var i = 0; i < stars; i++) {
-                var $star = $("<div/>").addClass("star");
+            // 数量
+            var starsCount = 800;
+            // 容器
+            var $starsbox = $(".starsbox");
+            // 距离
+            var distance = 800;
+            let dom = ''
+            for (var i = 0; i < starsCount; i++) {
+                var $star = $("<div class='star'><div/>");
                 // console.log($star)
-                $stars.append($star);
+                $starsbox.append($star);
             }
             $(".star").each(function () {
-                var cur = $(this);
+                // 原点
                 var s = 0.2 + (Math.random() * 1);
-                var curR = r + (Math.random() * 300);
-                cur.css({
+                // 距离
+                var curR = distance + (Math.random() * 300);
+                $(this).css({
+                    // 更改转换元素原点位置,就是按照哪一个点旋转
                     transformOrigin: "0 0 " + curR + "px",
                     transform: " translate3d(0,0,-" + curR + "px) rotateY(" + (Math.random() * 360) + "deg) rotateX(" + (Math.random() * -50) + "deg) scale(" + s + "," + s + ")"
-
                 })
             })
         })
