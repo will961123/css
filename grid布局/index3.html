@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自定义网格模板</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .warpper {
+            display: grid;
+            grid-template-areas:
+                "header header header"
+                "content content sildbar"
+                "box-1 box-2 box-3" 
+                "footer footer footer";
+            grid-gap: 1rem;
+        }
+
+        @media(max-width:500px) {
+            .warpper {
+                grid-template-areas:
+                    "header "
+                    "content"
+                    "sildbar"
+                    "box-1"
+                    "box-2"
+                    "box-3"
+                    "footer";
+            }
+        }
+
+
+        .header,
+        .footer {
+            text-align: center;
+        }
+
+        .header,
+        .footer,
+        .content,
+        .sildbar,
+        .box-1,
+        .box-2,
+        .box-3,
+        .footer {
+            padding: 1rem;
+            border: 1px solid #000;
+        }
+
+        .header {
+            grid-area: header
+        }
+
+        .content {
+            grid-area: content
+        }
+
+        .sildbar {
+            grid-area: sildbar
+        }
+
+        .box-1 {
+            grid-area: box-1
+        }
+
+        .box-2 {
+            grid-area: box-2
+        }
+
+        .box-3 {
+            grid-area: box-3
+        }
+
+        .footer {
+            grid-area: footer
+        }
+    </style>
+</head>
+
+<body>
+    <div class="warpper">
+        <header class="header">
+            <h1>自定义网格模板</h1>
+        </header>
+        <section class="content">
+            <h3>hello word</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At, nisi? Tenetur sunt ex accusantium nesciunt
+                quam! Pariatur unde architecto sed facilis quam quibusdam eaque blanditiis illo natus tenetur,
+                voluptatem odio soluta, consequatur molestiae ipsa, dolor eveniet odit ex excepturi? Ex ipsum blanditiis
+                minima recusandae laudantium aliquam voluptatibus. Neque, quae enim. Quaerat adipisci perferendis
+                exercitationem odio aut dolorem asperiores magni earum?
+            </p>
+        </section>
+        <div class="sildbar">
+            <h3>联系我们</h3>
+            <ul>
+                <li>电话</li>
+                <li>邮箱</li>
+                <li>qq</li>
+            </ul>
+        </div>
+        <div class="box-1">
+            <h3>标题1</h3>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro perferendis ullam laudantium debitis vero
+                dolorem, accusantium amet quisquam! Quas dolor voluptates magnam iure! Quos quam harum aliquid
+                asperiores quo, excepturi nemo molestias, sit rem labore nulla unde, nostrum eligendi ducimus!
+                Reiciendis nobis quod laborum non optio cupiditate eum quae minus?
+            </p>
+        </div>
+        <div class="box-2">
+            <h3>标题2</h3>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro perferendis ullam laudantium debitis vero
+                dolorem, accusantium amet quisquam! Quas dolor voluptates magnam iure! Quos quam harum aliquid
+                asperiores quo, excepturi nemo molestias, sit rem labore nulla unde, nostrum eligendi ducimus!
+                Reiciendis nobis quod laborum non optio cupiditate eum quae minus? </p>
+        </div>
+        <div class="box-3">
+            <h3>标题3</h3>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro perferendis ullam laudantium debitis vero
+                dolorem, accusantium amet quisquam! Quas dolor voluptates magnam iure! Quos quam harum aliquid
+                asperiores quo, excepturi nemo molestias, sit rem labore nulla unde, nostrum eligendi ducimus!
+                Reiciendis nobis quod laborum non optio cupiditate eum quae minus? </p>
+        </div>
+        <footer class="footer">
+            <p>Copyright &copy; 2020</p>
+        </footer>
+    </div>
+</body>
+
+</html>

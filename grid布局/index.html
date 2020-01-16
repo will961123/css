@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>grid</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .content {
+            display: grid;
+            /* 列宽 */
+            /* grid-template-columns: 70% 30%; */
+            grid-template-columns: 7fr 3fr;
+            /* repeat(重复次数，值) */
+            /* grid-template-columns:repeat(3,1fr); */
+
+            /* 行间距 列间距 */
+            /* grid-column-gap: 1rem;
+            grid-row-gap: 1rem; */
+            grid-gap: 1rem;
+
+            /* 行高 */
+            /* grid-auto-rows: 100px; */
+            grid-auto-rows: minmax(100px, auto);
+        }
+
+        .content>div {
+            background: #eee;
+            padding: 1rem;
+        }
+
+        .content>div:nth-child(odd) {
+            background: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi ad cum impedit possimus esse beatae cumque
+            quam
+            excepturi eveniet ea dolorem officiis quas velit temporibus non, iure nesciunt in saepe laudantium corporis!
+            Nihil eveniet error quis impedit est dolore earum architecto eaque quidem hic nesciunt, obcaecati quasi. Et
+            iusto unde repellat, corrupti eum tenetur atque. Maxime animi asperiores, rem unde beatae tempora voluptatum
+            aut, debitis, culpa laborum natus qui distinctio enim! Animi sunt quos enim maiores in rerum pariatur
+            provident!
+        </div>
+        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam perferendis repellendus quis dolorem
+            debitis deleniti pariatur molestias, odit quasi ipsa eaque tempora voluptas temporibus quo eum accusantium
+            saepe voluptatibus consectetur magnam nesciunt rerum molestiae. Illum incidunt at iste distinctio hic?
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi ad cum impedit possimus esse beatae cumque
+            quam
+            excepturi eveniet ea dolorem officiis quas velit temporibus non, iure nesciunt in saepe laudantium corporis!
+            Nihil eveniet error quis impedit est dolore earum architecto eaque quidem hic nesciunt, obcaecati quasi. Et
+            iusto unde repellat, corrupti eum tenetur atque. Maxime animi asperiores, rem unde beatae tempora voluptatum
+            aut, debitis, culpa laborum natus qui distinctio enim! Animi sunt quos enim maiores in rerum pariatur
+            provident!
+        </div>
+        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam perferendis repellendus quis dolorem
+            debitis deleniti pariatur molestias, odit quasi ipsa eaque tempora voluptas temporibus quo eum accusantium
+            saepe voluptatibus consectetur magnam nesciunt rerum molestiae. Illum incidunt at iste distinctio hic?
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi ad cum impedit possimus esse beatae cumque
+            quam
+            excepturi eveniet ea dolorem officiis quas velit temporibus non, iure nesciunt in saepe laudantium corporis!
+            Nihil eveniet error quis impedit est dolore earum architecto eaque quidem hic nesciunt, obcaecati quasi. Et
+            iusto unde repellat, corrupti eum tenetur atque. Maxime animi asperiores, rem unde beatae tempora voluptatum
+            aut, debitis, culpa laborum natus qui distinctio enim! Animi sunt quos enim maiores in rerum pariatur
+            provident!
+        </div>
+        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam perferendis repellendus quis dolorem
+            debitis deleniti pariatur molestias, odit quasi ipsa eaque tempora voluptas temporibus quo eum accusantium
+            saepe voluptatibus consectetur magnam nesciunt rerum molestiae. Illum incidunt at iste distinctio hic?
+        </div>
+    </div>
+</body>
+
+</html>
