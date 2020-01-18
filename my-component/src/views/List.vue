@@ -1,8 +1,16 @@
 <template>
   <div class="container">
     <div id="list">
-      <h3>组件</h3>
-      <router-link to="/loading" tag="li">loading 加载</router-link>
+      <div v-for="(group,groupIdx) in routes" :key="groupIdx">
+        <h3>{{group.groupName}}</h3>
+        <router-link
+          v-for="(path,pathIdx) in group.list"
+          :to="path.path"
+          tag="li"
+          :key="pathIdx"
+          :class="{selectRouter:$route.path===path.path}"
+        >{{path.text}}</router-link>
+      </div>
     </div>
     <div class="content">
       <router-view></router-view>
@@ -11,7 +19,24 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      routes: [
+        {
+          groupName: "组件",
+          list: [
+            { path: "/loading", text: "loading 加载" },
+            { path: "/tost", text: "tost 提示框" }
+          ]
+        }
+      ]
+    };
+  },
+  created() {
+    window.console.log(``, this.$route.path);
+  }
+};
 </script>
 
 <style>
@@ -58,9 +83,11 @@ export default {};
 }
 #list li:hover {
   cursor: pointer;
-  color: rgb(58, 209, 247)
+  color: rgb(58, 209, 247);
 }
-
+#list .selectRouter{
+    color: rgb(58, 209, 247);
+}
 .content {
   width: calc(100% - 240px);
   margin-left: 240px;
