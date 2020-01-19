@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文字背景图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100vh;
+            background: url(https://tva1.sinaimg.cn/large/6f8a2832gy1g8ph7fs6cdj22yo1o0kju.jpg) no-repeat center;
+            background-size: cover;
+            box-sizing: border-box;
+        }
+
+        .container {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%)
+        }
+
+        .p1 {
+            font-size: 6em;
+            font-weight: 600;
+            background: url(http://www.foliebox.com/web/Html5Apps/H5appsImg/html5-water-wave.png) no-repeat; 
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            /* 背景剪裁到文本 */
+            -webkit-background-clip: text;
+            animation: wave 10s linear infinite;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes wave {
+            from {
+                background-position: 10% 50%
+            }
+
+            to {
+                background-position: 90% 50%
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <p class="p1">波浪特效</p>
+    </div>
+</body>
+
+</html>

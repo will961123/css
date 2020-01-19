@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>背景图视差</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            overflow-x: hidden;
+        }
+
+        section {
+            width: 100%;
+            min-height: 100vh;
+            text-align: center;
+            position: relative;
+            /* 背景图片不滚动 */
+            background-attachment: fixed !important;
+        }
+
+        section.s2,
+        section.s3 {
+            min-height: 600px;
+        }
+
+        .s1 {
+            background: url(https://images.pexels.com/photos/1292843/pexels-photo-1292843.jpeg?cs=srgb&dl=city-buildings-near-sea-under-blue-sky-1292843.jpg&fm=jpg) no-repeat;
+            background-size: cover
+        }
+
+        .s2 {
+            background: url(https://images.pexels.com/photos/887845/pexels-photo-887845.jpeg?cs=srgb&dl=aerial-view-of-skyscraper-buildings-887845.jpg&fm=jpg) no-repeat;
+            background-size: cover
+        }
+
+        .s3 {
+            background: url(https://images.pexels.com/photos/2093323/pexels-photo-2093323.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) no-repeat;
+            background-size: cover
+        }
+
+        .s4 {
+            background: url(https://images.pexels.com/photos/462331/pexels-photo-462331.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) no-repeat;
+            background-size: cover
+        }
+
+        .herader,
+        .footer {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            font-size: 30px;
+            padding: 4px 10px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%)
+        }
+
+        .textbox {
+            width: 100%;
+            padding: 18px 40px;
+            background: #fff;
+            color: #666;
+            margin: 0 auto;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%)
+        }
+
+        @media(max-width:500px) {
+            section {
+                /* 背景图片滚动 */
+                background-attachment: scroll !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="s1">
+        <div class="herader">第一页</div>
+    </section>
+    <section class="s2">
+        <div class="textbox">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod itaque voluptas voluptatibus explicabo, quam,
+            unde pariatur praesentium doloremque accusamus optio dignissimos ut temporibus impedit natus totam iusto
+            nesciunt quo! Perspiciatis vel veniam consequuntur, expedita exercitationem esse pariatur. Quaerat tenetur
+            labore perferendis suscipit maxime deleniti eveniet excepturi, illum odio earum nobis?
+        </div>
+    </section>
+    <section class="s3">
+        <div class="textbox">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quod nesciunt alias natus ut magni eveniet
+            sint dolore sapiente saepe animi, error ab laudantium quo consequatur a dicta at ullam fuga voluptates
+            itaque. Quam sapiente nulla quibusdam dolorem. A corporis, vel adipisci corrupti consequatur nisi sint alias
+            enim similique modi?
+        </div>
+    </section>
+    <section class="s4">
+        <div class="footer">最后一页</div>
+    </section>
+</body>
+
+</html>
