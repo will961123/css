@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>刮刮卡</title>
+    <style> 
+        *{
+            margin:0;
+            padding:0
+        }
+        .container {
+            text-align: center;
+            width: 200px;
+            height: 100px;
+            border: 1px solid black;  
+            margin: 0 auto;
+            position: relative;
+        }
+
+        p {
+            line-height: 100px;
+            font-size: 18px;
+            color: red;
+            
+        }
+
+        canvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <p>谢谢惠顾</p>
+        <canvas></canvas>
+    </div>
+
+    <script>
+        let p = document.querySelector("p")
+        let canvas = document.querySelector("canvas")  
+        canvas.width=200
+        canvas.height=100
+        let ctx = canvas.getContext('2d')
+        let txtArr = ['谢谢惠顾', '谢谢惠顾', '谢谢惠顾', "50元", "50元", "100元", '500元']
+
+        function init() {   
+            setText()
+            drawCover(ctx)
+            reDraw(ctx)
+        }
+        function setText() {
+            p.innerHTML = txtArr[getRandom(0,txtArr.length-1)]
+        }
+        function getRandom(start,end){
+           return parseInt(Math.random()*(end-start+1)+start)
+        }
+        // 绘制覆盖层
+        function drawCover(ctx){
+            ctx.save()
+            ctx.fillStyle = 'rgb(100,100,100)'
+            ctx.fillRect(0,0,200,100)
+            ctx.restore()
+        }
+        // 绘制鼠标滑动区域
+        function reDraw(ctx){ 
+            canvas.onmousedown = function(e){ 
+                let startX = e.offsetX
+                let startY = e.offsetY
+                ctx.beginPath()
+                ctx.globalCompositeOperation = 'destination-out'
+                ctx.lineWidth = 10
+                ctx.moveTo(startX,startY)
+                canvas.onmousemove = function(e){
+                    let endX = e.offsetX
+                    let endY = e.offsetY
+                    ctx.lineTo(endX,endY) 
+                    ctx.stroke()
+                }
+            }
+            canvas.onmouseup = function(){ 
+                canvas.onmousemove = null
+            }
+        }
+
+
+        init()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button>点我</button>
+     <script>
+        document.querySelector('button').onclick = function(){copy('233')}
+      function copy(str) {
+        let iptEl = document.createElement('input')
+        // 防止ios闪屏
+        iptEl.setAttribute("readonly","")
+        iptEl.value = str
+        document.body.appendChild(iptEl)
+        // 选中文本 两个方法功能相同 为了兼容浏览器
+        iptEl.select()
+        iptEl.setSelectionRange(0,str.length)
+        document.execCommand('copy')
+        iptEl.remove()
+    }
+    </script>
+</body>
+</html>
