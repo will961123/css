@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas柱状图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        canvas {
+            border-radius: 8px;
+            box-shadow: 0 0 18px rgba(0, 0, 0, 0.2)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <canvas width="600" height="300" id="chart"></canvas>
+    </div>
+    <script>
+        window.onload = function () {
+            let canvas = document.getElementById("chart")
+            let ctx = canvas.getContext('2d')
+            // 获取宽高
+            let cw = canvas.width
+            let ch = canvas.height
+            ctx.fillStyle = "#f8fcff"
+            ctx.fillRect(0, 0, cw, ch)
+            // canvas内边距
+            let padding = 40
+            // 柱子宽度
+            let width = 8
+            // 柱子最大高度
+            let maxHeight = (ch - padding * 2) / 2
+            // 柱子最小高度
+            let minHeight = maxHeight / 2
+            // 柱子间距
+            let barGap = (cw - padding * 2 - width * 9) / 8
+            // 柱子圆角
+            let radius = 5
+            // y坐标 
+            let y = ch / 2
+            let months = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月']
+
+            for (let i = 0; i < 9; i++) {
+                // 上半部分高度
+                let height1 = parseInt(Math.random() * (maxHeight - minHeight + 1) + minHeight)
+                // 下半部分高度
+                let height2 = parseInt(Math.random() * (maxHeight - minHeight + 1) + minHeight)
+                // 柱子的x坐标
+                let x = padding + (width + barGap) * i
+                // 画柱子
+                draw(ctx, x, y, width, height1, height2, radius)
+                // 画文字
+                ctx.fillStyle = '#747d8c'
+                ctx.textAlign = "center"
+                ctx.font = "300 12px sans-serif"
+                ctx.fillText(months[i], x + width / 2, y + maxHeight + 20)
+            }
+
+
+
+            function draw(ctx, x, y, width, height1, height2, radius) {
+                // 上部分
+                ctx.beginPath()
+                ctx.moveTo(x, y)
+                ctx.lineTo(x, y - height1 + radius)
+                ctx.arcTo(x, y - height1, x + radius, y - height1, radius)
+                ctx.lineTo(x + width - radius, y - height1)
+                ctx.arcTo(x + width, y - height1, x + width, y - height1 + radius, radius)
+                ctx.lineTo(x + width, y)
+                ctx.lineTo(x, y)
+                ctx.fillStyle = "#341f97"
+                ctx.fill()
+
+                // 下部分
+                ctx.beginPath()
+                ctx.moveTo(x, y)
+                ctx.lineTo(x, y + height2 - radius)
+                ctx.arcTo(x, y + height2, x + radius, y + height2, radius)
+                ctx.lineTo(x + width - radius, y + height2)
+                ctx.arcTo(x + width, y + height2, x + width, y + height2 - radius, radius)
+                ctx.lineTo(x + width, y)
+                ctx.lineTo(x, y)
+                ctx.fillStyle = "#54a0ff"
+                ctx.fill()
+                // ctx.stroke()
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

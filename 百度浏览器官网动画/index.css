@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  width: 100%;
+  overflow: hidden;
+  background: #464853;
+}
+div[class^="bg"] {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 3840px;
+  animation: mountains-move 50s linear 0.8s infinite normal;
+  -webkit-animation: mountains-move 50s linear 0.8s infinite normal;
+}
+.mountains {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  animation: mountains-in 0.8s ease-out 0s 1 normal forwards;
+  -webkit-animation: mountains-in 0.8s ease-out 0s 1 normal forwards;
+}
+.bg1 {
+  z-index: 3;
+  height: 336px;
+  background: url(./img/bg-mountain-1.png) repeat-x;
+  animation-duration: 50s !important;
+}
+.bg2 {
+  z-index: 2;
+  height: 384px;
+  background: url(./img/bg-mountain-2.png) repeat-x;
+  animation-duration: 100s !important;
+}
+.bg3 {
+  z-index: 1;
+  height: 569px;
+  background: url(./img/bg-mountain-3.png) repeat-x;
+  animation-duration: 160s !important;
+}
+
+.bearBox {
+  position: absolute;
+  bottom: 35px;
+  width: 200px;
+  height: 100px;
+  z-index: 4;
+  background: url(./img/bear.png) no-repeat;
+  animation: bear-walk 0.4s steps(8) infinite, bear-move 3s forwards;
+  -webkit-animation: bear-walk 0.4s steps(8) infinite, bear-move 3s forwards;
+}
+
+/* 页面加载缩放 */
+@keyframes mountains-in {
+  from {
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    -o-transform: scale(1.5);
+  }
+  to {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+  }
+}
+/* 背景移动 */
+@keyframes mountains-move {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -3840px 0;
+  }
+}
+/* 熊移动到屏幕中间 */
+@keyframes bear-move {
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+  }
+}
+/* 熊走动动画 */
+@keyframes bear-walk {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -1600px 0;
+  }
+}
