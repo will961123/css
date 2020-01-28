@@ -1,0 +1,52 @@
+a {
+  text-decoration: none !important;
+}
+#header .top-bar {
+  height: 40px;
+  line-height: 39px;
+}
+#header .top-bar .emwBox {
+  position: relative;
+}
+#header .top-bar .emwBox:hover > img {
+  opacity: 1;
+}
+#header .top-bar .emwBox > img {
+  opacity: 0;
+  position: absolute;
+  z-index: 9;
+  left: 50%;
+  top: 25px;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+}
+#header .navbar-bottom .container .navbar-brand {
+  height: 90px;
+}
+#header .navbar-bottom .container #nav-list-box li a {
+  margin-right: 20px;
+  border-bottom: 2px solid transparent;
+}
+#header .navbar-bottom .container #nav-list-box li a:hover {
+  border-bottom: 2px solid rgb(12, 120, 221);
+}
+
+/* 大于900使用这个类 */
+#bannerImgList .carousel-inner .carousel-item.showBigImg {
+  height: 410px;
+}
+#bannerImgList .carousel-inner .carousel-item > img {
+  width: 100%;
+}
+
+#footer .container li {
+  list-style: none;
+}

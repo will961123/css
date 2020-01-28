@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../lib/bootstrap-4.4.1-dist/css/bootstrap.css">
+    <title>bootStrap-布局</title>
+    <style>
+        /* 超小 */
+        @media (max-width:575px) {
+            .container-self {
+                background-color: red;
+                width: 100%;
+            }
+        }
+
+        /* 小 */
+        @media (min-width:576px) and (max-width:767px) {
+            .container-self {
+                background-color: green;
+                width: 540px;
+            }
+        }
+
+        /* 中等 */
+        @media (min-width:768px) and (max-width:991px) {
+            .container-self {
+                background-color: palegreen;
+                width: 720px;
+            }
+        }
+
+        /* 大 */
+        @media (min-width:992px) and (max-width:1199px) {
+            .container-self {
+                background-color: palevioletred;
+                width: 960px;
+            }
+        }
+
+        /* 超大 */
+        @media (min-width:1200px) {
+            .container-self {
+                background-color: yellowgreen;
+                width: 1140px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container" style="background-color: red">
+        流式布局容器
+    </div>
+    <div class="container-fluid" style="background-color: yellow">
+        固定宽度的容器
+    </div>
+    <div class="container-self" style="margin: 0 auto">
+        自定义容器
+    </div>
+    <script src="../lib/jquery-3.3.1/jquery-3.3.1.js"></script>
+    <script src="../lib/bootstrap-4.4.1-dist/js/popper.min.js"></script>
+    <script src="../lib/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+</body>
+
+</html>

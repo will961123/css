@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../lib/bootstrap-4.4.1-dist/css/bootstrap.css">
+    <title>bootStrap-栅格系统</title>
+    <style>
+        .container .row>div:nth-child(1){
+            background: red
+        }
+        .container .row>div:nth-child(2){
+            background: yellow
+        }
+        .container .row>div:nth-child(3){
+            background: green
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <p>col 超小屏幕 如没有设置其他的样式 比超小屏幕大的按照超小屏幕布局</p>
+        <div class="row">
+            <div class="col">第1部分</div>
+            <div class="col">第2部分</div>
+            <div class="col">第3部分</div>
+        </div>
+    </div>
+    <div class="container">
+        <p>col-sm 小屏幕 如没有设置其他的样式 比小屏幕大的按照小屏幕布局 比小屏幕小的按照100%布局</p>
+        <div class="row">
+            <div class="col-sm">第1部分</div>
+            <div class="col-sm">第2部分</div>
+            <div class="col-sm">第3部分</div>
+        </div>
+    </div>
+    <div class="container">
+        <p>col-md 中等屏幕 如没有设置其他的样式 比中等屏幕大的按照中等屏幕布局 比中等屏幕小的按照100%布局</p>
+        <div class="row">
+            <div class="col-md">第1部分</div>
+            <div class="col-md">第2部分</div>
+            <div class="col-md">第3部分</div>
+        </div>
+    </div>
+    <script src="../lib/jquery-3.3.1/jquery-3.3.1.js"></script>
+    <script src="../lib/bootstrap-4.4.1-dist/js/popper.min.js"></script>
+    <script src="../lib/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
+</body>
+
+</html>
