@@ -8,6 +8,8 @@ import WillRadio from "./components/Will-radio.vue";
 import WillRadioGroup from "./components/Will-radio-group.vue";
 import WillCheckbox from "./components/Will-checkbox.vue";
 import WillCheckboxGroup from "./components/Will-checkbox-group.vue";
+import WillForm from "./components/Will-form.vue";
+import WillFormItem from "./components/Will-form-item.vue";
 import "./assets/fonts/css/font-awesome.css";
 
 Vue.config.productionTip = false;
@@ -19,6 +21,8 @@ Vue.component(WillRadio.name, WillRadio);
 Vue.component(WillRadioGroup.name, WillRadioGroup);
 Vue.component(WillCheckbox.name, WillCheckbox);
 Vue.component(WillCheckboxGroup.name, WillCheckboxGroup);
+Vue.component(WillForm.name, WillForm);
+Vue.component(WillFormItem.name, WillFormItem);
 
 new Vue({
   render: h => h(App)

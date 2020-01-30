@@ -231,6 +231,9 @@
         v-model="checkboxType"
       ></Will-checkbox>
     </div>
+    <!-- 
+      只要checkbox-group组件绑定了数组 vue内部会自己处理这个数组
+     -->
     <div class="row">
       <Will-checkbox-group v-model="checkboxArr">
         <Will-checkbox label="唱" name="c1"></Will-checkbox>
@@ -238,6 +241,20 @@
         <Will-checkbox label="rap" name="c3"></Will-checkbox>
         <Will-checkbox label="篮球" name="c4"></Will-checkbox>
       </Will-checkbox-group>
+    </div>
+
+    <div class="row">
+      <Will-form :model="formModel" label-width="100px">
+        <Will-form-item label="用户名">
+          <Will-input
+            v-model="formModel.name"
+            placeholder="请输入用户名"
+          ></Will-input>
+        </Will-form-item>
+        <Will-form-item label="选择">
+          <Will-switch v-model="formModel.active"></Will-switch>
+        </Will-form-item>
+      </Will-form>
     </div>
   </div>
 </template>
@@ -256,7 +273,12 @@ export default {
       // checkbox单独用
       checkboxType: false,
       // checkbox-group
-      checkboxArr: ["跳"]
+      checkboxArr: ["跳"],
+      // form数据
+      formModel: {
+        name: "",
+        active: true
+      }
     };
   },
   methods: {
