@@ -154,14 +154,14 @@
     </div>
 
     <!-- 
-      为了支持name属性 我们需要在组件内放一个隐藏的input
+      switch
      -->
     <div class="row">
       普通样式
-      <Will-switch v-model="select" name="sw1"></Will-switch>
+      <Will-switch v-model="switchType" name="sw1"></Will-switch>
       自定义颜色
       <Will-switch
-        v-model="select"
+        v-model="switchType"
         active-color="#13ce66"
         inactive-color="#ff4949"
         name="sw2"
@@ -169,9 +169,58 @@
       @change事件
       <Will-switch
         @change="switchChange"
-        v-model="select"
+        v-model="switchType"
         name="sw3"
       ></Will-switch>
+    </div>
+
+    <!-- 
+      radio不采用点击就发布input事件 而是使用了computed 的get set 为了方便封装radiogroup处理
+     -->
+    <div class="row">
+      <Will-radio label="1" name="r1" @change="radioChange" v-model="radioValue"
+        >男</Will-radio
+      >
+      <Will-radio label="2" name="r2" v-model="radioValue"></Will-radio>
+
+      <!-- 
+        radiogroup v-model 统一绑定到group上 
+        // radiogrouop组件 把自己传递给自己的后代
+        provide() {
+          return {
+            RadioGroup: this
+          };
+        }
+        // radio组件 接收
+        inject: {
+          RadioGroup: {
+            default: ""
+          }
+        }
+        // radio的value的获取和修改都要判断
+        computed: {
+          // 组件内部的双向绑定使用这个 因为不能直接修改父组件的value
+          model: {
+            get() {
+              return this.isGroup ? this.RadioGroup.value : this.value;
+            },
+            set(val) {
+              this.isGroup
+                ? this.RadioGroup.$emit("input", val)
+                : this.$emit("input", val);
+            }
+          },
+          // 判断是否被radiogroup包裹
+          isGroup() {
+            return !!this.RadioGroup;
+          }
+        }
+       -->
+      <p>Will-radio-group @change</p>
+      <Will-radio-group v-model="radioValue" @change="radioChange">
+        <Will-radio label="1" name="r1">男</Will-radio>
+        <Will-radio label="2" name="r2">女</Will-radio>
+      </Will-radio-group>
     </div>
   </div>
 </template>
@@ -184,7 +233,9 @@ export default {
       visible: false,
       username: "用户名",
       password: "密码",
-      select: false
+      switchType: false,
+      // 单选用
+      radioValue: "1"
     };
   },
   methods: {
@@ -197,6 +248,10 @@ export default {
     },
     // switchchange事件
     switchChange(e) {
+      window.console.log(``, e);
+    },
+    // radiochange事件
+    radioChange(e) {
       window.console.log(``, e);
     }
   }
