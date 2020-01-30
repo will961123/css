@@ -6,6 +6,8 @@ import WillInput from "./components/Will-input.vue";
 import WillSwitch from "./components/Will-switch.vue";
 import WillRadio from "./components/Will-radio.vue";
 import WillRadioGroup from "./components/Will-radio-group.vue";
+import WillCheckbox from "./components/Will-checkbox.vue";
+import WillCheckboxGroup from "./components/Will-checkbox-group.vue";
 import "./assets/fonts/css/font-awesome.css";
 
 Vue.config.productionTip = false;
@@ -15,6 +17,8 @@ Vue.component(WillInput.name, WillInput);
 Vue.component(WillSwitch.name, WillSwitch);
 Vue.component(WillRadio.name, WillRadio);
 Vue.component(WillRadioGroup.name, WillRadioGroup);
+Vue.component(WillCheckbox.name, WillCheckbox);
+Vue.component(WillCheckboxGroup.name, WillCheckboxGroup);
 
 new Vue({
   render: h => h(App)

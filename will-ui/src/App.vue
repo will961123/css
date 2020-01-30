@@ -182,7 +182,8 @@
         >男</Will-radio
       >
       <Will-radio label="2" name="r2" v-model="radioValue"></Will-radio>
-
+    </div>
+    <div class="row">
       <!-- 
         radiogroup v-model 统一绑定到group上 
         // radiogrouop组件 把自己传递给自己的后代
@@ -216,11 +217,27 @@
           }
         }
        -->
-      <p>Will-radio-group @change</p>
       <Will-radio-group v-model="radioValue" @change="radioChange">
         <Will-radio label="1" name="r1">男</Will-radio>
         <Will-radio label="2" name="r2">女</Will-radio>
+        <Will-radio label="3" name="r3">radio-group @change</Will-radio>
       </Will-radio-group>
+    </div>
+
+    <div class="row">
+      <Will-checkbox
+        label="复选框单独用是布尔值"
+        name="c1"
+        v-model="checkboxType"
+      ></Will-checkbox>
+    </div>
+    <div class="row">
+      <Will-checkbox-group v-model="checkboxArr">
+        <Will-checkbox label="唱" name="c1"></Will-checkbox>
+        <Will-checkbox label="跳" name="c2"></Will-checkbox>
+        <Will-checkbox label="rap" name="c3"></Will-checkbox>
+        <Will-checkbox label="篮球" name="c4"></Will-checkbox>
+      </Will-checkbox-group>
     </div>
   </div>
 </template>
@@ -234,8 +251,12 @@ export default {
       username: "用户名",
       password: "密码",
       switchType: false,
-      // 单选用
-      radioValue: "1"
+      // radio用
+      radioValue: "1",
+      // checkbox单独用
+      checkboxType: false,
+      // checkbox-group
+      checkboxArr: ["跳"]
     };
   },
   methods: {
