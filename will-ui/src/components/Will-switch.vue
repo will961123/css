@@ -67,6 +67,8 @@ export default {
 <style lang="scss" scoped>
 .Will-switch {
   display: inline-block;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   position: relative;
   font-style: 14px;
@@ -89,9 +91,11 @@ export default {
     border: 1px solid #dcdfe6;
     outline: none;
     border-radius: 10px;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     background-color: #dcdfe6;
     cursor: pointer;
+    -webkit-transition: border-color 0.3s, background-color 0.3s;
     transition: border-color 0.3s, background-color 0.3s;
     vertical-align: middle;
     .Will-switch-button {
@@ -99,6 +103,7 @@ export default {
       top: 1px;
       left: 1px;
       border-radius: 100%;
+      -webkit-transition: all 0.3s;
       transition: all 0.3s;
       width: 16px;
       height: 16px;
@@ -111,6 +116,7 @@ export default {
       background-color: #409eff;
     }
     .Will-switch-button {
+      -webkit-transform: translateX(20px);
       transform: translateX(20px);
     }
   }
