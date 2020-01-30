@@ -124,6 +124,55 @@
         <Will-button type="primary">确定</Will-button>
       </template>
     </Will-dialog>
+
+    <!--
+    v-model 语法糖 
+    <input type="text" v-model="username" />
+    // 等价于单项数据流value加监听输入事件
+    <input type="text" :value="username" @input="username = $event.target.value" />
+    // 自定义的组件如果要用v-model语法糖的话需要在组件接收value 并监听和发布输入事件 
+    handleInput(e) {
+      this.$emit("input", e.target.value);
+    }
+    -->
+    <div class="row">
+      <Will-input placeholder="添加name属性" name="username"></Will-input>
+      <Will-input placeholder="v-model语法糖" v-model="username"></Will-input>
+      <Will-input placeholder='type="password"' type="password"></Will-input>
+      <Will-input
+        placeholder="clearable属性"
+        v-model="username"
+        clearable
+      ></Will-input>
+      <Will-input
+        placeholder="show-password属性"
+        v-model="password"
+        type="password"
+        show-password
+      ></Will-input>
+      <Will-input placeholder="禁用样式" disabled></Will-input>
+    </div>
+
+    <!-- 
+      为了支持name属性 我们需要在组件内放一个隐藏的input
+     -->
+    <div class="row">
+      普通样式
+      <Will-switch v-model="select" name="sw1"></Will-switch>
+      自定义颜色
+      <Will-switch
+        v-model="select"
+        active-color="#13ce66"
+        inactive-color="#ff4949"
+        name="sw2"
+      ></Will-switch>
+      @change事件
+      <Will-switch
+        @change="switchChange"
+        v-model="select"
+        name="sw3"
+      ></Will-switch>
+    </div>
   </div>
 </template>
 
@@ -132,7 +181,10 @@ export default {
   name: "app",
   data() {
     return {
-      visible: false
+      visible: false,
+      username: "用户名",
+      password: "密码",
+      select: false
     };
   },
   methods: {
@@ -142,6 +194,10 @@ export default {
     // 通过注册close事件关闭（麻烦，正确示例用sync修饰符）
     close(type) {
       this.visible = type;
+    },
+    // switchchange事件
+    switchChange(e) {
+      window.console.log(``, e);
     }
   }
 };
@@ -157,6 +213,14 @@ export default {
   // 深度选择 当前组件添加scoped属性的话如果想要影响其他组件 需要用到
   // scss ::v-deep less /deep/ css >>>
   ::v-deep .Will-button {
+    margin-right: 10px;
+  }
+  .Will-input {
+    width: 200px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  .Will-switch {
     margin-right: 10px;
   }
 }
