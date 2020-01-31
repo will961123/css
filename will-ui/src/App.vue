@@ -138,7 +138,7 @@
     <div class="row">
       <Will-input placeholder="添加name属性" name="username"></Will-input>
       <Will-input placeholder="v-model语法糖" v-model="username"></Will-input>
-      <Will-input placeholder='type="password"' type="password"></Will-input>
+      <Will-input placeholder="type='password'" type="password"></Will-input>
       <Will-input
         placeholder="clearable属性"
         v-model="username"
@@ -155,18 +155,17 @@
 
     <!-- 
       switch
-     -->
+    -->
     <div class="row">
       普通样式
-      <Will-switch v-model="switchType" name="sw1"></Will-switch>
-      自定义颜色
+      <Will-switch v-model="switchType" name="sw1"></Will-switch>自定义颜色
       <Will-switch
         v-model="switchType"
         active-color="#13ce66"
         inactive-color="#ff4949"
         name="sw2"
-      ></Will-switch>
-      @change事件
+      ></Will-switch
+      >@change事件
       <Will-switch
         @change="switchChange"
         v-model="switchType"
@@ -176,7 +175,7 @@
 
     <!-- 
       radio不采用点击就发布input事件 而是使用了computed 的get set 为了方便封装radiogroup处理
-     -->
+    -->
     <div class="row">
       <Will-radio label="1" name="r1" @change="radioChange" v-model="radioValue"
         >男</Will-radio
@@ -216,7 +215,7 @@
             return !!this.RadioGroup;
           }
         }
-       -->
+      -->
       <Will-radio-group v-model="radioValue" @change="radioChange">
         <Will-radio label="1" name="r1">男</Will-radio>
         <Will-radio label="2" name="r2">女</Will-radio>
@@ -233,7 +232,7 @@
     </div>
     <!-- 
       只要checkbox-group组件绑定了数组 vue内部会自己处理这个数组
-     -->
+    -->
     <div class="row">
       <Will-checkbox-group v-model="checkboxArr">
         <Will-checkbox label="唱" name="c1"></Will-checkbox>
@@ -255,6 +254,15 @@
           <Will-switch v-model="formModel.active"></Will-switch>
         </Will-form-item>
       </Will-form>
+    </div>
+
+    <div class="row">
+      <Will-button type="primary" @click="showLoading"
+        >this.$loading.showLoading({})</Will-button
+      >
+      <Will-button type="primary" @click="showTost"
+        >this.$tost.showTost({})</Will-button
+      >
     </div>
   </div>
 </template>
@@ -282,6 +290,12 @@ export default {
     };
   },
   methods: {
+    showLoading() {
+      this.$loading.showLoading({ content: "加载中...", mask: true });
+    },
+    showTost() {
+      this.$tost.showTost({ content: "加载中...", mask: true });
+    },
     showDiaLog() {
       this.visible = true;
     },

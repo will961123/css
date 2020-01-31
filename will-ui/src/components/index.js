@@ -9,7 +9,7 @@ import WillCheckbox from "./Will-checkbox.vue";
 import WillCheckboxGroup from "./Will-checkbox-group.vue";
 import WillForm from "./Will-form.vue";
 import WillFormItem from "./Will-form-item.vue";
-import "./fonts/css/font-awesome.css";
+import "../assets/fonts/css/font-awesome.css";
 
 import Vue from "vue";
 import loadingComponent from "./will-loading.vue";
