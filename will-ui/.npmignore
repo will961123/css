@@ -5,6 +5,7 @@ public/
  
 vue.config.js
 babel.config.js
+笔记.md
 *.map
 
  
