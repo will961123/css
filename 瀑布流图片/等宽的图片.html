@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+
+
+        .container {
+            width: 1200px;
+            background: red;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .content {
+            display: inline-block;
+            max-width: 1200px;
+            overflow: hidden;
+            width: auto;
+            margin: 0 auto;
+            background: black;
+            position: relative;
+        }
+
+        .content::after {
+            content: "";
+            width: 0;
+            height: 0;
+            display: block;
+            clear: both;
+            font-size: 0;
+        }
+
+        .box {
+            list-style: none;
+            font-size: 0;
+            float: left;
+            padding-right: 10px;
+            padding-bottom: 10px;
+        }
+
+        /* .box:nth-child(4n) {
+            padding-right: 0px;
+        } */
+
+        .box img {
+            width: 290px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 360图片 等宽不等高 -->
+    <div class="container">
+        <ul class="content">
+            <li class="box">
+                <img src="./img/1.webp" alt="" srcset="">
+            </li>
+            <li class="box">
+                <img src="./img/2.webp" alt="" srcset="">
+            </li>
+            <li class="box">
+                <img src="./img/3.webp" alt="" srcset="">
+            </li>
+            <li class="box">
+                <img src="./img/4.webp" alt="" srcset="">
+            </li>
+            <li class="box">
+                <img src="./img/5.webp" alt="" srcset="">
+            </li>
+            <li class="box">
+                <img src="./img/6.jpg" alt="" srcset="">
+            </li>
+            <li class="box">
+                <img src="./img/7.jpg" alt="" srcset="">
+            </li>
+            <li class="box">
+                <img src="./img/8.jpg" alt="" srcset="">
+            </li>
+            <li class="box">
+                <img src="./img/9.jpg" alt="" srcset="">
+            </li>
+            <li class="box">
+                <img src="./img/10.jpg" alt="" srcset="">
+            </li>
+            <li class="box">
+                <img src="./img/1.webp" alt="" srcset="">
+            </li>
+            <li class="box">
+                <img src="./img/2.webp" alt="" srcset="">
+            </li>
+            <li class="box">
+                <img src="./img/3.webp" alt="" srcset="">
+            </li>
+            <li class="box">
+                <img src="./img/4.webp" alt="" srcset="">
+            </li>
+            <li class="box">
+                <img src="./img/5.webp" alt="" srcset="">
+            </li>
+            <li class="box">
+                <img src="./img/6.jpg" alt="" srcset="">
+            </li>
+            <li class="box">
+                <img src="./img/7.jpg" alt="" srcset="">
+            </li>
+            <li class="box">
+                <img src="./img/8.jpg" alt="" srcset="">
+            </li>
+            <li class="box">
+                <img src="./img/9.jpg" alt="" srcset="">
+            </li>
+            <li class="box">
+                <img src="./img/10.jpg" alt="" srcset="">
+            </li>
+        </ul>
+    </div>
+
+    <script src="./lib/jquery-1.11.1.min.js"></script>
+    <script>
+        // $(function () { 
+        //     // setTimeout(init, 1000) 
+        // })
+        // jq 操作图片等 必须要这样写 不能简写
+        $(window).on('load', function () {
+            init()
+        })
+        function init() {
+            // 取出所有图片盒子
+            let $box = $('.box')
+            let imgw = $box.outerWidth()
+            // 求出列数 
+            let row = parseInt(1200 / imgw)
+            $('.box:nth-child(' + row + 'n)').css({
+                paddingRight: 0
+            })
+            // 存放高度的arr
+            let heightArr = []
+            // 循环所有盒子
+            $box.each(function (idx, itm) {
+                // 当前元素的高度
+                let imgh = $(itm).outerHeight()
+                if (idx < row) {
+                    heightArr.push(imgh)
+                } else {
+                    // 最小高度的索引
+                    let minIdx = heightArr.indexOf(Math.min(...heightArr))
+                    $(itm).css({
+                        position: "absolute",
+                        left: minIdx * imgw + 'px',
+                        top: heightArr[minIdx] + 'px'
+                    })
+                    // 更新高度数组
+                    heightArr[minIdx] += imgh
+                }
+            })
+            $(".content").css('height', Math.max(...heightArr))
+        }
+    </script>
+</body>
+
+</html>
