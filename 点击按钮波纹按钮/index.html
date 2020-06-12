@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            background-color: #050c17;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            color: #fff;
+            letter-spacing: 4px;
+            line-height: 50px;
+            border-radius: 25px;
+            padding: 0 20px;
+            margin: 10px 0;
+            outline: none;
+            background-image: linear-gradient(90deg, #0e74d0, #41c2ef);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+        }
+
+        .btn:nth-child(2) {
+            background-image: linear-gradient(90deg, #755bea, #ff72c0)
+        }
+
+        span {
+            display: block;
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: bowen 1s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes bowen {
+            0% {
+                height: 0;
+                width: 0;
+                opacity: 0.5;
+            }
+
+            100% {
+                height: 500px;
+                width: 500px;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div href="javascript:;" class="btn">BUTTON</div>
+    <div href="javascript:;" class="btn">BUTTON</div>
+
+    <script>
+        let btnList = document.querySelectorAll('.btn')
+        btnList.forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                let span = document.createElement('span')
+                // 鼠标x btn left
+                let x = e.clientX - e.target.offsetLeft
+                let y = e.clientY - e.target.offsetTop
+                span.style.left = x + 'px'
+                span.style.top = y + 'px'
+                this.appendChild(span)
+                setTimeout(() => {
+                    span.remove()
+                }, 1000);
+            })
+        })
+    </script>
+</body>
+
+</html>
