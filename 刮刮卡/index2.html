@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            text-align: center;
+            width: 200px;
+            height: 100px;
+            border: 1px solid black;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .text {
+            line-height: 100px;
+            font-size: 18px;
+            color: red;
+            user-select: none;
+        }
+
+        canvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body> 
+    <div class="container">
+        <p class="text">谢谢惠顾</p>
+        <canvas id="canvas" width="200" height="100"></canvas>
+    </div> 
+    <script> 
+        init()
+        function init() {
+            var p =document.getElementsByClassName('text')[0]
+            var box = document.getElementsByClassName('container')[0]
+            var canvas = document.getElementById('canvas') 
+            var ctx = canvas.getContext('2d') 
+            var textList= ['一等奖','二等奖','三等奖','二等奖','三等奖','谢谢惠顾','三等奖','谢谢惠顾']
+            drawCover(ctx)
+            handlerMouseDown(canvas, ctx)
+            compatible(canvas, ctx ,box)
+            setText(p,textList)
+        } 
+        function setText(p,textList) {
+            p.innerHTML = textList[getRandom(0,textList.length-1)]
+        }
+        function getRandom(start,end){
+           return parseInt(Math.random()*(end-start+1)+start)
+        }
+        function drawCover(ctx) {
+            ctx.beginPath()
+            ctx.fillStyle = 'grey'
+            ctx.fillRect(0, 0, 200, 100)
+        }
+
+        function reDraw(x, y, ctx, canvas) {
+            var w = canvas.width
+            var h = canvas.height
+            var area = w * h
+            ctx.beginPath()
+            ctx.globalCompositeOperation = 'destination-out'
+            // canvas.style.display = 'none';
+            // canvas.offsetHeight;
+            // canvas.style.display = 'inherit';
+            ctx.arc(x, y, 15, 0, Math.PI * 2)
+            ctx.fill()
+            ctx.closePath()
+
+            var data = ctx.getImageData(0, 0, w, h).data
+            var scrapeNum = 0
+            for (var i = 3; i < data.length; i += 4) {
+                if (data[i] === 0) {
+                    scrapeNum++
+                }
+            }
+            if (scrapeNum > area * 0.7) {
+                ctx.clearRect(0, 0, 200, 100)
+                canvas.onmousemove = function () { }
+                canvas.ontouchend = function () { }
+            }
+        }
+        function handlerMouseDown(canvas, ctx) {  
+            canvas.onmousedown = function () { 
+                canvas.onmousemove = function (e) {
+                    e = e || window.event
+                    var x = e.offsetX
+                    var y = e.offsetY
+                    console.log(x, y)
+                    reDraw(x, y, ctx, canvas)
+                }
+            }
+            canvas.onmouseup = function () {
+                canvas.onmousemove = function () { }
+            }
+        } 
+        function compatible(canvas, ctx ,box) { 
+            canvas.ontouchstart = function () {
+                var left = box.offsetLeft
+                var top = box.offsetTop
+                canvas.ontouchmove = function (e) {
+                    e = e || window.event
+                    var x = e.touches[0].clientX - left
+                    var y = e.touches[0].clientY - top  
+                    reDraw(x, y, ctx, canvas)
+                }
+            }
+            canvas.ontouchend = function () {
+                canvas.ontouchmove = function () { }
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,345 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box
+}
+html{
+    width:100%;
+    height:100%;
+}
+html,
+body,
+#app {
+    width: 100%;
+    height: 100%;
+    font-size:0.14rem
+}
+::webkit-scrollbar { 
+    display: none;
+ }
+ .page1,.page2,.page3{
+    width: 100%;
+    height: 6.67rem;
+    position: absolute;
+ }
+.page1 {
+    /* margin-bottom: .5rem; */
+    /* background-image: url(/shangqiu/images/page1.jpg); */
+    background-size: 100% 100%;
+}
+.page2{
+    background-color: #4e3820
+}
+.page3{
+    margin-bottom: .5rem;
+    /* background-image: url(/shangqiu/images/page3.jpg); */
+    background-size: 100% 100%;
+}
+/* body{
+    background:radial-gradient(49% 160%,#22b5ff 0,#3a72fa 100%);
+    font-size:0.14rem
+}     */
+img{
+    border:0
+}
+ul,li{
+    list-style-type:none
+}
+.lottery-box{
+    overflow:hidden
+}
+.lottery-box .title{
+    text-align:center;
+    padding:0.5rem 0;
+    font-size:0.18rem;
+    color:#fff
+}
+.lottery{
+    animation:changeBg .5s ease infinite;
+    overflow:hidden;
+    padding:0.1rem;
+    width:82%;
+    margin:1.2rem auto 0;
+    background-repeat:no-repeat;
+    background-size:101% 108%
+}
+@keyframes changeBg{0%{background-image:url(../image/k11.png)}100%{background-image:url(../image/k22.png)}}
+.lottery .lottery-item{
+    height: 2.7rem;
+    position: relative;
+    margin-top: 0.3rem;
+    margin-left: 0.1rem;
+}
+.lottery .lottery-item ul li{
+    width:33.33333333%;
+    position:absolute;
+    padding-right:0.1rem;
+}
+.lottery .lottery-item ul li:nth-child(2){
+    left:33.33333333%
+}
+.lottery .lottery-item ul li:nth-child(3){
+    left:66.66666666%
+}
+.lottery .lottery-item ul li:nth-child(4){
+    left:66.66666666%;top:.9rem
+}
+.lottery .lottery-item ul li:nth-child(5){
+    left:66.66666666%;top:1.8rem
+}
+.lottery .lottery-item ul li:nth-child(6){
+    left:33.33333333%;top:1.8rem
+}
+.lottery .lottery-item ul li:nth-child(7){
+    left:0;top:1.8rem
+}
+.lottery .lottery-item ul li:nth-child(8){
+    left:0;top:.9rem
+}
+.lottery .lottery-item ul li .box{
+    height:0.85rem;
+    position:relative;
+    text-align:center;
+    overflow:hidden;
+    background:url(../image/bg2.png) no-repeat center;
+    background-size:100% 100%
+}
+.lottery .lottery-item ul li .box img{
+    display:block;
+    height:0.5rem;
+    margin:0 auto;
+    margin-top:0.06rem;
+    /* margin-bottom:0.05rem; */
+}
+.lottery .lottery-item ul li .box p{
+    color:#708abf;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size:0.12rem;
+}
+.lottery .lottery-item ul li.on .box{
+    background:url(/common/images/bg1.png) no-repeat center;
+    background-size:100% 100%
+}
+.lottery .lottery-item ul li.on .box p{
+    color:#fff
+}
+.lottery .lottery-item .lottery-start{
+    position:absolute;
+    left:33.33333333%;
+    width:33.33333333%;
+    top:.9rem;
+    padding-right:0.1rem
+}
+.lottery .lottery-item .lottery-start .box{
+    height:0.85rem;
+    font-size:0.14rem;
+    color:#fff;
+    cursor:pointer;
+    text-align:center;
+    overflow:hidden;
+    background:url(../image/bg1.png) no-repeat center;
+    background-size:100% 100%
+}
+.lottery .lottery-item .lottery-start .box p b{
+    font-size:0.2rem;
+    margin:0.28rem 0;
+    line-height:0.3rem;
+    display:block
+}
+.lottery .lottery-item .lottery-start .box:active{
+    opacity:.7
+}
+.lottery .lottery-item .lottery-start .box.gray{
+    background:url(../image/bg3.png) no-repeat center;background-size:100% 100%
+}
+.lottery .lottery-item .lottery-start .box.gray p{
+    color:#708abf;
+    font-weight:700
+}
+.mask{
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.7);
+    position:fixed;
+    overflow:hidden;
+    z-index:222;
+    top:0;
+    left:0
+}
+.lottery-alert{
+    max-width:72%;
+    text-align:center;
+    z-index:10000;
+    border-radius:0.1rem;
+    background:#fff;
+    padding:0.2rem;
+    position:fixed;
+    left:0;
+    right:0;
+    margin:auto;
+    top:50%;
+    transform:translateY(-50%)
+}
+.lottery-alert h1{
+    font-size:0.18rem;
+    font-weight:700;
+    color:#d92b2f
+}
+.lottery-alert img{
+    display:block;
+    height:1.2rem;
+    margin:0 auto
+}
+.lottery-alert h2{
+    font-weight:400;
+    color:#d92b2f;
+    font-size:0.15rem;
+    /* padding-top:0.15rem; */
+}
+.lottery-alert p{
+    color:#666;
+    font-size:0.16rem;
+    padding-top:0.05rem
+}
+.lottery-alert .btnsave{
+    border-radius:0.03rem;
+    box-shadow:none;
+    height:0.35rem;
+    cursor:pointer;
+    line-height:0.35rem;
+    color:#fff;
+    margin-top:0.12rem;
+    background:linear-gradient(180deg,rgba(213,60,63,1) 0%,rgba(201,20,24,1) 100%);
+    font-size:0.12rem
+}
+.page2 .imgBox,.page2 .imgBox img{
+    width: 100%;
+}
+.page2 .btn{
+    width: 90%;
+    margin: .1rem auto 0;
+    text-align: center;
+    background: white;
+    border-radius: 5px;
+    padding: .1rem 0;
+}
+.page2 .award{
+    display: flex;
+    padding: .1rem .1rem
+}
+.page2 .award .flex1{
+    flex: 1
+}
+.page2 .award .flex2{
+    flex: 2;
+    text-align: left;
+}
+.page2 .award .flex1 img{
+    width: .4rem;
+}
+.page2 .award .flex1 .duihuan{
+    padding: .07rem;
+    margin-top: .05rem;
+    background: red;
+    color: white;
+    border-radius: .06rem;
+}
+.page2 .award .flex1 .hexiao{
+    padding: .07rem;
+    margin-top: .05rem;
+    background: #d8d8d8;
+    color: #afaaaa;
+    border-radius: .06rem;
+}
+.page2 .btn2{
+    background-color: #ccc;
+    color: grey
+}
+.page2 .tel{
+    font-size: .22rem
+}
+.mt10{
+    margin-top: .1rem;
+    text-align: center;
+    color: yellow
+}
+.bottom {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background-color: white;
+
+    display: flex;
+}
+
+.bottom>div {
+    flex: 1;
+    text-align: center;
+    height: 0.5rem;
+    line-height: 1.5;
+    color: #9a9a9a;
+}
+
+.bottom .active {
+    color: #45c018
+}
+
+.iconfont {
+    font-size: .2rem
+}
+
+/*判断是否是iphoneX，使用@media 媒体查询尺寸*/
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+    .page1,.page2,.page3{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+    
+    .lottery{
+        margin-top: 46%;
+        width: 84%;
+    }
+}
+
+
+.musicicon {
+    background: url(../image/music.png) no-repeat;
+    background-size: 100% 100%;
+    width: .3rem;
+    height: .3rem;
+    position: absolute;
+    top: .4rem;
+    left: .1rem;
+    z-index: 1
+}
+
+.musicrotate {
+    -webkit-animation: xuanzhuan 1.2s infinite linear;
+    animation: xuanzhuan 1.2s infinite linear;
+}
+@keyframes xuanzhuan {
+    0% {
+        transform: rotate(0deg)    ;
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+}
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+@-webkit-keyframes xuanzhuan {
+    0% {
+        -webkit-transform: rotate(0deg)
+    }
+    100% {
+        -webkit-transform: rotate(360deg)
+    }
+}
+
+

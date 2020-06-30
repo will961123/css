@@ -1,0 +1,474 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>抽奖</title>
+    <link rel="stylesheet" href="./css/weui.css" />
+    <link rel="stylesheet" href="./css/weuix.css" />
+    <link rel="stylesheet" href="./css/iconfont.css" />
+    <link rel="stylesheet" href="./css/lottery.css" />
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+    <style type="text/css" media="all">
+        [v-cloak] {
+            display: none;
+        }
+
+        .addUserInfo {
+            transition: all .8s;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 999;
+            width: 100%;
+            min-height: 100vh;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .baom {
+            width: 280px;
+            background: #fff;
+            padding: 20px 14px;
+            border-radius: 14px;
+            position: relative;
+        }
+
+        .baoming {
+            margin: 0 auto;
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btnBox {
+            display: flex;
+            justify-content: center;
+        }
+
+        .userInfoIptBox input,
+        .userInfoIptBox select {
+            padding: 0 5px;
+            height: 30px;
+            line-height: 30px;
+            margin-bottom: 10px;
+            width: 100%;
+            background: #FFECC9;
+            border: 1px solid #CBBEA6;
+            border-radius: 6px;
+        }
+
+        .saveBtn {
+            margin: 0 auto;
+            height: 30px;
+            width: 140px;
+            line-height: 30px;
+            text-align: center;
+            color: #fff;
+            padding-bottom: 10px;
+            background: red;
+            border-radius: 15px;
+            text-align: center;
+            margin: 0 auto;
+            display: block;
+            outline: none;
+            border: none;
+        }
+
+        .closeVIew {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            text-align: center;
+            line-height: 20px;
+            border-radius: 50%;
+            color: #fff;
+        }
+
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity .8s;
+        }
+
+        .fade-enter,
+        .fade-leave-to {
+            opacity: 0
+        }
+
+        .maskBg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url(./image/activebg.jpg);
+            background-size: 100% 100%;
+            z-index: 999;
+        }
+
+        .second {
+            width: 2rem;
+            border-radius: 1rem;
+            right: 1rem;
+            top: 1rem;
+            font-size: .6rem;
+            position: absolute;
+            color: white;
+            background-color: rgb(0, 0, 0, .6);
+            text-align: center;
+        }
+
+
+        /* 2020年6月22日 15:36:20 */
+        .canvasBox {
+            text-align: center;
+            width: 200px;
+            height: 50px;
+            border: 1px solid black;
+            position: relative;
+            margin: 0 auto;
+            margin-top: 30vh;
+            background: #f3f9f9
+        }
+
+        .canvasBox .canvasText {
+            line-height: 50px;
+            font-size: 18px;
+            color: black;
+            user-select: none;
+            background-color: #fff;
+
+        }
+
+        .canvasBox canvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .indexBtnBox {
+            width: 200px;
+            margin: 0 auto;
+            margin-top: 30vh;
+        }
+
+        .indexBtnBox .btnImg {
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 20px;
+            width: 100%;
+            margin-bottom: 14px;
+            background: red
+        }
+
+        .mc {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 99999;
+            box-sizing: border-box;
+            padding: 26px 24px 50px 24px;
+        }
+
+        .mc .mcContent {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(117, 156, 133, 0.8);
+            border-radius: 12px;
+            position: relative;
+            box-sizing: border-box;
+            padding: 18px 20px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .mc .mcContent .scrollview {
+            width: 100%;
+            height: 95%;
+            overflow: auto;
+
+        }
+
+        .mc .closeDiv {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.8);
+            content: 'X';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .myPrize .item {
+            display: flex;
+            line-height: 3em;
+        }
+
+        .myPrize .item span {
+            display: inline-block;
+            flex: 1
+        }
+
+        .myPrize .item .red {
+            color: red
+        }
+
+        .myPrize .item .blue {
+            color: skyblue
+        }
+
+        .myPrize .item.th {
+            font-size: 15px
+        }
+
+        .myPrize .rule {
+            text-align: left;
+            text-indent: 2em;
+            line-height: 1.8em;
+        }
+
+        .backIndex {
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 20px;
+            width: 200px;
+            margin: 0 auto;
+            margin-top: 28px;
+            margin-bottom: 14px;
+            background: red
+        }
+
+        .addUserInfoBox {
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 85%;
+            height: 230px;
+            background-color: rgba(117, 156, 133, 0.6);
+            box-sizing: border-box;
+            padding: 24px 12px;
+            border-radius: 12px;
+
+        }
+
+        .addUserInfoBox .closeDIv {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #e0923e;
+            /* background-color: rgba(0, 0, 0, 0.8); */
+            content: 'X';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .addUserInfoBox .ipt {
+            outline: none;
+            width: 100%;
+            height: 38px;
+            background: #ffffff;
+            background-origin: 1px solid #434343;
+            border-radius: 10px;
+            box-sizing: border-box;
+            padding-left: .8em
+        }
+
+        .addUserInfoBox .desc {
+            font-size: 14px;
+        }
+
+        .page1{ 
+            background: url('./image/bg999.jpg') no-repeat center top 100% 100%; 
+        }
+    </style>
+</head>
+
+<body>
+    <div class="lottery-box" id="app" v-cloak>
+
+
+        <transition style="display:none" name="fade" class="fade">
+            <div class="maskBg" :style="{'background-image': 'url('+ './indeBG.jpg' +')' }" v-if="showIndeBg">
+                <div class="second" v-text="sec+'s'"></div>
+            </div>
+        </transition>
+
+        <div class="musicicon" :class="musicFlag? 'musicrotate':''"></div>
+
+
+        <div v-show="canShowMc" class="mc">
+            <div class="mcContent">
+                <div @click="closeMc" class="closeDiv">X</div>
+                <div v-show="mcType===1" class="scrollview">
+                    <div class="myPrize">
+                        <div style="border-bottom:1px solid #fff;font-size: 18px" class="myPrizeTit">我的奖品</div>
+                        <div class="item th">
+                            <span>序号</span>
+                            <span>奖品名称</span>
+                            <span>中奖事件</span>
+                            <span>兑奖状态</span>
+                        </div>
+                        <div v-for="(item, index) in 18" :key="index" class="item th">
+                            <span>1</span>
+                            <span>一等奖</span>
+                            <span>06-22</span>
+                            <span class="red">未登记</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div v-show="mcType===2" class="scrollview">
+                    <div class="myPrize ">
+                        <div style="margin-bottom:24px;font-size: 18px" class="myPrizeTit">活动规则</div>
+                        <p class="rule">
+                            1.关注‘东郊记忆’微信公众号;
+                        </p>
+                        <p class="  rule">
+                            2.关注‘东郊记忆’微信公众号;
+                        </p>
+                        <p class="  rule">
+                            3.关注‘东郊记忆’微信公众号;
+                        </p>
+                        <p class="rule  ">
+                            4.关注‘东郊记忆’微信公众号;
+                        </p>
+                        <p class="rule  ">
+                            5.关注‘东郊记忆’微信公众号;
+                        </p>
+                        <p class="rule  ">
+                            6.关注‘东郊记忆’微信公众号;
+                        </p>
+
+                        <p style="margin-top:24px" class="rule  ">
+                            4.关注‘东郊记忆’微信公众号;
+                        </p>
+                        <p class="rule  ">
+                            5.关注‘东郊记忆’微信公众号;
+                        </p>
+                        <p class="rule  ">
+                            6.关注‘东郊记忆’微信公众号;
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div v-if="sectionIdx===0" class="page1" :style="{backgroundImage:'url(' + './image/bg999.jpg' + ')'}">
+
+            <div class="indexBtnBox">
+                <div @click="showGame" class="btnImg">开始刮奖</div>
+                <div @click="showMc(1)" class="btnImg">中奖记录</div>
+                <div @click="showMc(2)" class="btnImg">规则说明</div>
+            </div>
+
+        </div>
+
+        <div v-show="sectionIdx===1" class="page1" :style="{backgroundImage:'url(' + './image/page1.png' + ')'}">
+            <div class="canvasBox">
+                <p class="canvasText">奖品</p>
+                <canvas id="canvas" width="200" height="50"></canvas>
+            </div>
+            <div @click="backIndex" class="backIndex">返回首页</div>
+        </div>
+
+
+        <div v-show="sectionIdx===2" class="page1" :style="{backgroundImage:'url(' + './image/page1.png' + ')'}">
+            <div @click="showAddUserInfo" style="margin-top:72vh" class="backIndex">领取奖品</div>
+            <div  v-if="addUserInfo" style="color:#FFF" class="addUserInfoBox">
+                <div @click="addUserInfo=false" class="closeDIv">X</div>
+                <input v-model="addUserInfoObj.name" class="ipt" placeholder="请输入您的姓名" type="text">
+                <input v-model="addUserInfoObj.phone" style="margin-top:14px" class="ipt" placeholder="请输入您的手机号码"
+                    type="text">
+                <span class="desc">*为了让工作人员给您兑奖，请正确填写资料</span>
+                <div @click="saveUinfo" class="backIndex">提交信息</div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- <audio id="audio" loop="-1" src="/hfyx/music/10s.mp3"></audio> -->
+        <div style="display:none" class="page1" :style="{backgroundImage:'url(' + '' + ')'}">
+            <div class="lottery">
+                <div class="lottery-item">
+                    <div class="lottery-start">
+                        <div class="box gray" v-if="isStart===0">
+                            <p>活动未开始</p>
+                        </div>
+                        <div class="box" @click="startLottery" v-if="isStart===1">
+                            <p>
+                                <b>抽奖</b>
+                            </p>
+                        </div>
+                        <div class="box gray" v-if="isStart===2">
+                            <p>活动已过期</p>
+                        </div>
+                    </div>
+                    <ul>
+                        <li v-for="(item,i) in list" :class="i==index?'on':''">
+                            <div class="box">
+                                <p>
+                                    <img :src="item.img" alt="">
+                                </p>
+                                <p>{{item.title}}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+    <!-- <script type="text/javascript">
+    var img1= '{$data[0]}';
+    var img2= '{$data[1]}';
+    var img3= '{$data[2]}';
+    var opId= "{$info['open_id']}";
+    var $$name= "{$info['name']}";
+    var $$phone= "{$info['phone']}";
+    var $$age_class= "{$info['age_class']}";
+    </script> -->
+
+    <script src="./js/zepto.min.js"></script>
+    <script src="./js/zepto.weui.js"></script>
+    <script src="./js/vue.js"></script>
+    <script src="./js/lottery.js"></script>
+</body>
+
+</html>

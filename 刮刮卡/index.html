@@ -77,6 +77,7 @@
                 ctx.lineWidth = 10
                 ctx.moveTo(startX,startY)
                 canvas.onmousemove = function(e){
+                    console.log(111)
                     let endX = e.offsetX
                     let endY = e.offsetY
                     ctx.lineTo(endX,endY) 
